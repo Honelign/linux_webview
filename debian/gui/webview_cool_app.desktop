@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0.0
+Name=webview cool app
+GenericName=webview cool app
+Comment=webview Cool App that does everything!
+Terminal=false
+Type=Application
+Categories=Utility;
+Keywords=Flutter;
+Icon=webview_cool_app

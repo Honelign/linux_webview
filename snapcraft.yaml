@@ -1,0 +1,70 @@
+name: webview
+version: 1.0.10
+summary: Flutter webview Application
+description: Flutter webview  Application using Flutter
+confinement: strict
+base: core22
+grade: stable
+icon: snap/gui/icon.png
+
+
+apps:
+   webview:
+     command: webview
+     extensions: [gnome] 
+     plugs:
+       - network
+       - desktop
+
+parts:
+  webview:
+    source: .
+    plugin: flutter
+    flutter-target: lib/main.dart # The main entry-point file of the application
+
+# name: flutter-webview-app
+# version: '1.0'
+# summary: "YouTube Client built with Flutter"
+# description: |
+#   A Flutter application that provides a YouTube experience 
+#   using the webview_cef package.
+
+# grade: stable 
+# base: core22
+# confinement: strict 
+
+ 
+# parts:
+#   flutter-webview-app:
+#     source: .
+#     plugin: flutter
+#     flutter-target: lib/main.dart
+
+#     # after-install: |
+#     #   # Create a desktop file (optional)
+#     #   mkdir -p /usr/share/applications/
+#     #   echo "[Desktop Entry]" > /usr/share/applications/flutter-webview-app.desktop
+#     #   echo "Name=flutter-webview-app" >> /usr/share/applications/flutter-webview-app.desktop
+#     #   echo "Exec=/snap/bin/flutter-webview-app/flutter-webview-app" >> /usr/share/applications/flutter-webview-app.desktop
+#     #   echo "Icon=/snap/gui/flutter-webview-app/icons/48x48/apps/flutter-webview-app.png" >> /usr/share/applications/flutter-webview-app.desktop
+#     #   echo "Terminal=false" >> /usr/share/applications/flutter-webview-app.desktop
+#     #   echo "Type=Application" >> /usr/share/applications/flutter-webview-app.desktop
+#     #   echo "Categories=Application;Video;" >> /usr/share/applications/flutter-webview-app.desktop
+# slots:
+#   dbus-flutter-webview-app: # adjust accordingly to your app name
+#     interface: dbus
+#     bus: session
+#     name: org.bar.flutter-webview-app # adjust accordingly to your app name and
+    
+# apps:
+#   flutter-webview-app:
+#     command: bin/flutter-webview-app
+#     daemon: simple 
+#     plugs: 
+#       - network 
+#       - home 
+#       - desktop 
+#       - media-control 
+#       - x11
+#     slots:
+#       - dbus-flutter-webview-app
