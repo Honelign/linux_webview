@@ -86,7 +86,15 @@ This guide will walk you through setting up and running the Flutter Linux app us
 
 
 ---
+## **To run the code on different locations outside the container 
+## Steps to Copy the Build App to Documents
+Run the Docker Container and Build the App
+Use the following command to generate the release bundle and mount it to your host machine:
 
+``` bash
+docker run -v ~/Documents:/output -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --network=host flutter_app:latest flutter build linux --release
+```
+Replace ~/Documents with the desired target directory path on your host machine.
 ## **Troubleshooting**
 1. **Docker Permission Denied**:
    - Add your user to the Docker group:
