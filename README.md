@@ -75,26 +75,47 @@ This guide will walk you through setting up and running the Flutter Linux app us
 ---
 
 
-## **Step 5: Run the Docker Container****
-
-
+## **Step 5: Run the Docker Container**
 1. Run the container:
    ```bash
    docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --network=host flutter_app:latest ./build/linux/x64/release/bundle/example
    ```
 
+---
+
+## **Building and Saving the App Outside the Container**
+
+### Option 1: Build and Save to Custom Location
+1. Create a target directory on your host machine (if it doesn't exist):
+   ```bash
+   
+1. Create an output_build directory in your project:
+```bash
+mkdir -p output_build
+```
+
+   ```
+
+
+2. Run the container with the local output_build folder 
+```bash
+docker run -v $(pwd)/output_build:/output flutter_app
+```
+
+
+The built application will be available in `~/output_build/example`
+
+
 
 
 ---
-## **To run the code on different locations outside the container 
-## Steps to Copy the Build App to Documents
-Run the Docker Container and Build the App
-Use the following command to generate the release bundle and mount it to your host machine:
 
-``` bash
-docker run -v ~/Documents:/output -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --network=host flutter_app:latest flutter build linux --release
+## **Running the Saved Build**
+To run the saved build from your host machine:
+```bash
+~/./output_build/example
 ```
-Replace ~/Documents with the desired target directory path on your host machine.
+
 ## **Troubleshooting**
 1. **Docker Permission Denied**:
    - Add your user to the Docker group:
@@ -112,7 +133,5 @@ Replace ~/Documents with the desired target directory path on your host machine.
 
 ---
 
-
-
-By following these steps, you should be able to successfully run the Flutter Linux app on your client’s device using Docker.
+By following these steps, you should be able to successfully run the Flutter Linux app on your client's device using Docker.
 

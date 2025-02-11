@@ -70,6 +70,21 @@ RUN flutter config --enable-linux-desktop \
     && flutter precache
 
 # Run Flutter build
+VOLUME /output
+
 RUN flutter clean && \
     flutter pub get \
-    && flutter build linux 
+    && flutter build linux
+
+# Switch back to root for copying (add these lines)
+USER root
+RUN chown developer:developer /output
+# Set default command to ensure files are copied (without wildcard)
+# Make sure the output directory exists and has correct permissions
+CMD ["sh", "-c", "\
+    mkdir -p /output && \
+    chown developer:developer /output && \
+    cp -r build/linux/x64/release/bundle/* /output/ && \
+    chown -R $(id -u developer):$(id -g developer) /output && \
+    chmod -R 755 /output && \
+    echo 'Build files copied successfully to output_build folder'"]
